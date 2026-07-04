@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Camera</title>
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#111;
+}
+video{
+    width:100%;
+    max-width:500px;
+    border-radius:12px;
+}
+</style>
+</head>
+<body>
+
+<video id="camera" autoplay playsinline></video>
+
+<script>
+async function startCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" },
+            audio: false
+        });
+
+        document.getElementById("camera").srcObject = stream;
+    } catch (err) {
+        alert("پێویستە مۆڵەتی کامێرا بدەیت.");
+    }
+}
+
+startCamera();
+</script>
+
+</body>
+</html>
